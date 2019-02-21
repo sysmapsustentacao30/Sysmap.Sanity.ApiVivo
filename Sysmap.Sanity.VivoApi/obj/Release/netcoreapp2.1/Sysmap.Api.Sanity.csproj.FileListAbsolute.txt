@@ -1,0 +1,15 @@
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\bin\Release\netcoreapp2.1\Sysmap.Api.Sanity.deps.json
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\bin\Release\netcoreapp2.1\Sysmap.Api.Sanity.runtimeconfig.json
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\bin\Release\netcoreapp2.1\Sysmap.Api.Sanity.runtimeconfig.dev.json
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\bin\Release\netcoreapp2.1\Sysmap.Api.Sanity.dll
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\bin\Release\netcoreapp2.1\Sysmap.Api.Sanity.pdb
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.csprojAssemblyReference.cache
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.csproj.CoreCompileInputs.cache
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.RazorAssemblyInfo.cache
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.RazorAssemblyInfo.cs
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.AssemblyInfoInputs.cache
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.AssemblyInfo.cs
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.RazorTargetAssemblyInfo.cache
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.dll
+C:\GITHUB\SanityApi_Uipath_Vivo\Sysmap.Api.Sanity\Sysmap.Api.Sanity\obj\Release\netcoreapp2.1\Sysmap.Api.Sanity.pdb
