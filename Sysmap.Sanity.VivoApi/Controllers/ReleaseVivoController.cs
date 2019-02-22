@@ -19,25 +19,22 @@ namespace Sysmap.Sanity.VivoApi.Controllers
             _logger = logger;
         }
 
-        [HttpGet("GetToken")]
-        public string GetToken(string email,string senha,[FromServices]VivoDAO releaseDAO)
-        {
-            var token = releaseDAO.GerarToken(email, senha);
-
-            return token;
-        }
 
         [HttpGet("ListCenarios")]
-        public IEnumerable<VivoRelease> ListCenarios(string token, [FromServices]VivoDAO releaseDAO)
+        public ObjectResult ListCenarios(string email,string password, [FromServices]VivoDAO vivoDAO)
         {
-            List<VivoRelease> releases = new List<VivoRelease>();
+            List<VivoCenarios> cenarios = new List<VivoCenarios>();
 
             try
             {
-                bool verifyToken = releaseDAO.VerificaToken(token);
+                bool userExist = vivoDAO.VerificaUser(email, password);
 
-                if (verifyToken) {
-                     releases = releaseDAO.ListRelease();
+                if (userExist) {
+                     cenarios = vivoDAO.ListaCenarios();
+                }
+                else
+                {
+                    return new ObjectResult("Email/Password invalido");
                 }
             }
             catch (Exception ex)
@@ -45,19 +42,19 @@ namespace Sysmap.Sanity.VivoApi.Controllers
                 _logger.LogError(ex.ToString());
             }
 
-            return releases;
+            return new ObjectResult(cenarios);
         }
 
         [HttpPost("AtualizaCenario")]
-        public string AtualizaCenario(string token, string cenario, string executado, string status, string codRelease, [FromServices]VivoDAO releaseDAO)
+        public string AtualizaCenario(string email, string password, string cenario, string executado, string status, string codRelease, [FromServices]VivoDAO vivoDAO)
         {
             try
             {
-                bool verifToken = releaseDAO.VerificaToken(token);
+                bool verifUser = vivoDAO.VerificaUser(email, password);
 
-                if (verifToken)
+                if (verifUser)
                 {
-                    string update = releaseDAO.UpdateRelease(cenario, executado, status, codRelease);
+                    string update = vivoDAO.UpdateRelease(cenario, executado, status, codRelease);
 
                     return update;
                 }
@@ -67,7 +64,7 @@ namespace Sysmap.Sanity.VivoApi.Controllers
                 _logger.LogError(ex.ToString());
             }
 
-            return "Erro no token";
+            return "Email/Password invalido";
         }
 
     }

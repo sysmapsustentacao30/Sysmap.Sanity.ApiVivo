@@ -18,30 +18,8 @@ namespace Sysmap.Sanity.VivoApi.DAOs
             _configuracoes = config;
         }
 
-        //Gerando Token
-        internal string GerarToken (string email, string senha)
-        {
-            string token = "";
-            try
-            {
-                string ConnectionString = _configuracoes.GetConnectionString("Sanity");
-
-                using (MySqlConnection mysqlCon = new MySqlConnection(ConnectionString))
-                {
-                    token = mysqlCon.Query<string>(@"CALL `Sanity`.`procGerarToken`(@Email, @Senha);", new { Email = email, Senha = senha }).SingleOrDefault();
-                   
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            return token;
-        }
-
-        //Verifica se exite o token 
-        internal bool VerificaToken(string token)
+        //Verifica user exite o token 
+        internal bool VerificaUser (string email, string password)
         {
             bool resultado = false;
             try
@@ -50,7 +28,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
-                    var qtd = mysqlCon.Query<int>("SELECT Count(*) as Qtd FROM Sanity.Tokens where Token = @Token", new { Token = token });
+                    var qtd = mysqlCon.Query<int>("SELECT count(*) as qtd FROM Sanity.User_Test Where Email = @email and Password = @password;", new {email, password });
 
                     foreach (var i in qtd)
                     {
@@ -76,9 +54,9 @@ namespace Sysmap.Sanity.VivoApi.DAOs
         }
 
         //Lista de Cenarios Assinados para o analista UiPath
-        internal List<VivoRelease> ListRelease()
+        internal List<VivoCenarios> ListaCenarios()
         {
-            List<VivoRelease> releases = new List<VivoRelease>();
+            List<VivoCenarios> listCenarios = new List<VivoCenarios>();
             try
             {
                 string ConnectionString = _configuracoes.GetConnectionString("Sanity");
@@ -94,11 +72,11 @@ namespace Sysmap.Sanity.VivoApi.DAOs
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
-                    var result = mysqlCon.Query<VivoRelease>(query);
+                    var result = mysqlCon.Query<VivoCenarios>(query);
 
-                    foreach (VivoRelease cenario in result)
+                    foreach (VivoCenarios cenario in result)
                     {
-                        releases.Add(cenario);
+                        listCenarios.Add(cenario);
                     }
                 }
             }
@@ -107,7 +85,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
                 throw ex;
             }
 
-            return releases;
+            return listCenarios;
         }
 
         //Upadate no Status do Cenario da Release

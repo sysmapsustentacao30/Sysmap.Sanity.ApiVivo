@@ -1,6 +1,6 @@
 ﻿namespace Sysmap.Sanity.VivoApi.Models
 {
-    public class VivoRelease
+    public class VivoCenarios
     {
         public int CodRelease { get; set; }
 
