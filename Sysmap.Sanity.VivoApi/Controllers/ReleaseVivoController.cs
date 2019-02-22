@@ -48,7 +48,7 @@ namespace Sysmap.Sanity.VivoApi.Controllers
             return releases;
         }
 
-        [HttpGet("AtualizaCenario")]
+        [HttpPost("AtualizaCenario")]
         public string AtualizaCenario(string token, string cenario, string executado, string status, string codRelease, [FromServices]VivoDAO releaseDAO)
         {
             try
