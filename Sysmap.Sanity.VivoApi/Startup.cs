@@ -22,14 +22,15 @@ namespace Sysmap.Sanity.VivoApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<VivoDAO>();
+            services.AddTransient<NaturaDAO>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Configurando o serviço de documentação do Swagger
             services.AddSwaggerGen(c => {
                     c.SwaggerDoc("v1",new Swashbuckle.AspNetCore.Swagger.Info{
-                            Title ="Vivo Sanity",
+                            Title ="API Sanity",
                             Version = "v1",
-                            Description = "Api utilizada pelo Uipath para execução de cenarios automatizados da relese.",
+                            Description = "Api para integração com o Sanity",
                             Contact = new Swashbuckle.AspNetCore.Swagger.Contact
                             {
                                 Name = "Marcelo Martins",
@@ -67,7 +68,7 @@ namespace Sysmap.Sanity.VivoApi
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json",
-                    "Vivo Api");
+                    "API Sanity");
             });
         }
     }
