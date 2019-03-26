@@ -30,7 +30,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
                 string ConnectionString = _configuracoes.GetConnectionString("Sanity");
 
                 string query = @"SELECT * FROM Natura_cenariosAPI
-                                 WHERE cod_release = @cod_release AND executor = @executor;";
+                                 WHERE cod_release = @cod_release AND executor = @executor AND execucao_status <> 4;";
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
