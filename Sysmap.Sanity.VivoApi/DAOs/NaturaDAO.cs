@@ -29,7 +29,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
             {
                 string ConnectionString = _configuracoes.GetConnectionString("Sanity");
 
-                string query = @"SELECT * FROM Natura_cenariosAPI
+                string query = @"SELECT * FROM vCenariosAPI_Natura
                                  WHERE cod_release = @cod_release AND executor = @executor AND execucao_status <> 4;";
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
@@ -38,6 +38,8 @@ namespace Sysmap.Sanity.VivoApi.DAOs
 
                     foreach (NaturaCenarios cenario in result)
                     {
+                        string[] cenarioCodigo = cenario.Cenario.Split(" ");
+                        cenario.Cenario = cenarioCodigo[0];
                         natura.Add(cenario);
                     }
                 }
