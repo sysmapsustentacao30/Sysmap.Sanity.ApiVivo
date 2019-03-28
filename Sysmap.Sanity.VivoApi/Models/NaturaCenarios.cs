@@ -10,6 +10,7 @@ namespace Sysmap.Sanity.VivoApi.Models
         public int Numero_teste { get; set; }
         public string Sistema { get; set; }
         public string Ambiente { get; set; }
+        public string Cenario { get; set; }
         public int Execucao_status { get; set; }
         public string Cn_login { get; set; }
         public string Cn_senha { get; set; }
