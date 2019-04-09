@@ -63,13 +63,20 @@ namespace Sysmap.Sanity.VivoApi.Controllers
                 }
                 else
                 {
+                    var chamadoStatus = 0;
+
                     if (nCenario == 0)
                     {
                         return NotFound("Error: nCenario = 0");
                     }
                     else
                     {
-                        naturaDAO.UpdateCenario(codRelease, nCenario, execStatus, observacao);
+                        if (execStatus == 3)
+                        {
+                            chamadoStatus = 1;
+                        }
+
+                        naturaDAO.UpdateCenario(codRelease, nCenario, execStatus, chamadoStatus,observacao);
                     }
                 }
             }

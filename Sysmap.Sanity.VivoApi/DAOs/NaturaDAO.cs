@@ -52,7 +52,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
             return natura;
         }
 
-        internal void UpdateCenario(string cod_release,int nCenario, int execStatus, string observacao)
+        internal void UpdateCenario(string cod_release,int nCenario, int execStatus, int chamadoStatus, string observacao)
         {
             try
             {
@@ -67,13 +67,14 @@ namespace Sysmap.Sanity.VivoApi.DAOs
                 string query = @"UPDATE testes_natura
                                 SET
 	                                execucao_status = @execStatus,
+                                    chamado_sttus = @chamadoStatus,
 	                                observacao = @observacao,
                                     data_executado = @date
                                 WHERE cod_release = @cod_release and numero_teste = @nCenario;";
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
-                   mysqlCon.Execute(query,new { execStatus, observacao, date, cod_release, nCenario });
+                   mysqlCon.Execute(query,new { execStatus, chamadoStatus,observacao, date, cod_release, nCenario });
                 }
             }
             catch (Exception ex)
