@@ -67,7 +67,7 @@ namespace Sysmap.Sanity.VivoApi.DAOs
                 string query = @"UPDATE testes_natura
                                 SET
 	                                execucao_status = @execStatus,
-                                    chamado_sttus = @chamadoStatus,
+                                    chamado_status = @chamadoStatus,
 	                                observacao = @observacao,
                                     data_executado = @date
                                 WHERE cod_release = @cod_release and numero_teste = @nCenario;";
