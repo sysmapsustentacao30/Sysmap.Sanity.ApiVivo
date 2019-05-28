@@ -44,7 +44,7 @@ namespace Sysmap.Sanity.VivoApi.Controllers
 
             return new ObjectResult(cenarios);
         }
-
+       
         [HttpPost("AtualizaCenario")]
         public string AtualizaCenario(string email, string password, string cenario, string executado, string status, string codRelease, [FromServices]VivoDAO vivoDAO)
         {
