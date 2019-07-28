@@ -22,14 +22,14 @@ namespace Sysmap.Sanity.VivoApi.DAOs
         }
 
         #region Lista de Cenarios Assinados para o analista UiPath
-        internal List<TestesVivo> ListaCenarios(string codRelease)
+        internal List<TestesVivo> ListaCenarios(string codRelease, string analista)
         {
             List<TestesVivo> listCenarios = new List<TestesVivo>();
             try
             {
                 string ConnectionString = _configuracoes.GetConnectionString("Sanity");
 
-                var query = $"SELECT * FROM Sanity.TestesVivo WHERE CodRelease = '{codRelease}';";
+                var query = $"SELECT * FROM Sanity.TestesVivo WHERE CodRelease = '{codRelease}' AND Analista = '{analista}';";
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {

@@ -21,12 +21,12 @@ namespace Sysmap.Sanity.VivoApi.Controllers
 
 
         [HttpGet("ListCenarios")]
-        public IActionResult ListCenarios(string codRelease, [FromServices]VivoDAO vivoDAO)
+        public IActionResult ListCenarios(string codRelease,string analista ,[FromServices]VivoDAO vivoDAO)
         {
             _logger.LogInformation($"Código da release: {codRelease}");
             try
             {
-                List<TestesVivo> cenarios = vivoDAO.ListaCenarios(codRelease);
+                List<TestesVivo> cenarios = vivoDAO.ListaCenarios(codRelease, analista);
                 if(cenarios.Count == 0)
                 {
                     return BadRequest("Còdigo da release não encontrado");
