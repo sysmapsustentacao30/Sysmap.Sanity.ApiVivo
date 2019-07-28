@@ -21,50 +21,41 @@ namespace Sysmap.Sanity.VivoApi.Controllers
 
 
         [HttpGet("ListCenarios")]
-        public ObjectResult ListCenarios(string email,string password, [FromServices]VivoDAO vivoDAO)
+        public IActionResult ListCenarios(string codRelease, [FromServices]VivoDAO vivoDAO)
         {
-            List<VivoCenarios> cenarios = new List<VivoCenarios>();
-
+            _logger.LogInformation($"Código da release: {codRelease}");
             try
             {
-                bool userExist = vivoDAO.VerificaUser(email, password);
-
-                if (userExist) {
-                     cenarios = vivoDAO.ListaCenarios();
-                }
-                else
+                List<TestesVivo> cenarios = vivoDAO.ListaCenarios(codRelease);
+                if(cenarios.Count == 0)
                 {
-                    return new ObjectResult("Email/Password invalido");
+                    return BadRequest("Còdigo da release não encontrado");
                 }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-            }
-
-            return new ObjectResult(cenarios);
-        }
-       
-        [HttpPost("AtualizaCenario")]
-        public string AtualizaCenario(string email, string password, string cenario, string executado, string status, string codRelease, [FromServices]VivoDAO vivoDAO)
-        {
-            try
-            {
-                bool verifUser = vivoDAO.VerificaUser(email, password);
-
-                if (verifUser)
-                {
-                    string update = vivoDAO.UpdateRelease(cenario, executado, status, codRelease);
-
-                    return update;
-                }
+                ObjectResult result = new ObjectResult(cenarios);
+                return Ok(result);
             }
             catch(Exception ex)
             {
-                _logger.LogError(ex.ToString());
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
             }
+            
+        }
 
-            return "Email/Password invalido";
+        [HttpPost("AtualizaCenario")]
+        public IActionResult AtualizaCenario(string codRelease,int numTeste ,int status, string observacao ,[FromServices]VivoDAO vivoDAO)
+        {
+            try
+            {
+                _logger.LogInformation($"Param: codRelease= {codRelease}, numTeste= {numTeste}, status= {status}, observacao= {observacao}");
+                string result = vivoDAO.UpdateTeste(codRelease, numTeste, status, observacao);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message);
+                return BadRequest(ex.Message);
+            }
         }
 
     }

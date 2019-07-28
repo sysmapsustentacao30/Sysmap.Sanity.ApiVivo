@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using MySql.Data.MySqlClient;
 using Sysmap.Sanity.VivoApi.Models;
 using System;
@@ -12,84 +13,41 @@ namespace Sysmap.Sanity.VivoApi.DAOs
     public class VivoDAO
     {
         private IConfiguration _configuracoes;
+        private readonly ILogger _logger;
 
-        public VivoDAO(IConfiguration config)
+        public VivoDAO(IConfiguration config, ILogger<VivoDAO> logger)
         {
             _configuracoes = config;
+            _logger = logger;
         }
 
-        //Verifica user exite o token 
-        internal bool VerificaUser (string email, string password)
+        #region Lista de Cenarios Assinados para o analista UiPath
+        internal List<TestesVivo> ListaCenarios(string codRelease)
         {
-            bool resultado = false;
+            List<TestesVivo> listCenarios = new List<TestesVivo>();
             try
             {
                 string ConnectionString = _configuracoes.GetConnectionString("Sanity");
 
-                using (var mysqlCon = new MySqlConnection(ConnectionString))
-                {
-                    var qtd = mysqlCon.Query<int>("SELECT count(*) as qtd FROM Sanity.User_Test Where Email = @email and Password = @password;", new {email, password });
-
-                    foreach (var i in qtd)
-                    {
-                        if (i == 1)
-                        {
-                            resultado = true;
-                        }
-                        else
-                        {
-                            resultado = false;
-                        }
-                    }
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return resultado;
-        }
-
-        //Lista de Cenarios Assinados para o analista UiPath
-        internal List<VivoCenarios> ListaCenarios()
-        {
-            List<VivoCenarios> listCenarios = new List<VivoCenarios>();
-            try
-            {
-                string ConnectionString = _configuracoes.GetConnectionString("Sanity");
-
-                var query = @"SELECT ce.* 
-                               FROM Sanity.Cenarios ce 
-                               JOIN Sanity.Release re 
-	                                ON re.CodRelease = ce.CodRelease
-                                Where ce.Analista = 'UiPath'
-	                                  AND ce.Excluido = 0
-                                      AND re.Status = 0;";
-
+                var query = $"SELECT * FROM Sanity.TestesVivo WHERE CodRelease = '{codRelease}';";
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
-                    var result = mysqlCon.Query<VivoCenarios>(query);
+                    listCenarios = mysqlCon.Query<TestesVivo>(query).ToList();
 
-                    foreach (VivoCenarios cenario in result)
-                    {
-                        listCenarios.Add(cenario);
-                    }
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                _logger.LogError(ex.Message);
             }
 
             return listCenarios;
         }
+        #endregion
 
         //Upadate no Status do Cenario da Release
-        internal string UpdateRelease(string cenario, string executado, string status, string codRelease)
+        internal string UpdateTeste(string codRelease,int numTeste,int status, string observacao)
         {
             try
             {
@@ -97,16 +55,17 @@ namespace Sysmap.Sanity.VivoApi.DAOs
 
                 using (var mysqlCon = new MySqlConnection(ConnectionString))
                 {
-                    mysqlCon.Execute(@"UPDATE Sanity.Cenarios SET `Status` = @Status, `Executado` = @Executado WHERE `Cenario` = @Cenario AND CodRelease = @CodRelease;", new { Status = status, Executado = executado, Cenario = cenario, CodRelease = codRelease });
+                    mysqlCon.Execute($"UPDATE Sanity.TestesVivo SET Status = {status}, Observacao = '{observacao}' WHERE CodRelease = '{codRelease}' AND Cenario = {numTeste};");
                 }
-                string retorno = "Update com sucesso";
+                string result = "Update com sucesso";
 
-                return retorno;
+                return result;
 
             }
             catch (Exception ex)
             {
-                return ex.ToString();
+                _logger.LogError(ex.Message);
+                return ex.Message;
             }
         }
     }
