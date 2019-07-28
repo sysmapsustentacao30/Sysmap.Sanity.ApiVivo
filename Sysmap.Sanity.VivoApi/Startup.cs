@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using App.Metrics.Configuration;
+using App.Metrics.Extensions.Reporting.InfluxDB;
+using App.Metrics.Extensions.Reporting.InfluxDB.Client;
+using App.Metrics.Reporting.Interfaces;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
@@ -6,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Sysmap.Sanity.VivoApi.DAOs;
+using System;
 
 namespace Sysmap.Sanity.VivoApi
 {
@@ -33,35 +38,21 @@ namespace Sysmap.Sanity.VivoApi
                             Description = "Api para integração com o Sanity",
                             Contact = new Swashbuckle.AspNetCore.Swagger.Contact
                             {
-                                Name = "Marcelo Martins",
-                                Email = "marcelo.martins@sysmap.com.br",
+                                Name = "",
+                                Email = "",
                             }
                     });
             });
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole()
-                         .AddDebug();
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "swagger/index.html"
-                    );
-            });
+            app.UseMvc();
 
             // Ativando middlewares para uso do Swagger
             app.UseSwagger();

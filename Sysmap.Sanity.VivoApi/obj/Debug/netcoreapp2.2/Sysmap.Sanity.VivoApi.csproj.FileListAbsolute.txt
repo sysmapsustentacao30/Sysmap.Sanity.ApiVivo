@@ -1,0 +1,14 @@
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\bin\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.deps.json
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\bin\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.runtimeconfig.json
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\bin\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.runtimeconfig.dev.json
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\bin\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.dll
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.csprojAssemblyReference.cache
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.csproj.CoreCompileInputs.cache
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.RazorAssemblyInfo.cache
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.RazorAssemblyInfo.cs
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.AssemblyInfoInputs.cache
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.AssemblyInfo.cs
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.RazorTargetAssemblyInfo.cache
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\bin\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.pdb
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.dll
+C:\RepositoryGitHub\Sysmap.Sanity.ApiVivo\Sysmap.Sanity.VivoApi\obj\Debug\netcoreapp2.2\Sysmap.Sanity.VivoApi.pdb

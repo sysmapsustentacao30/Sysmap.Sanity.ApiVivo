@@ -41,6 +41,18 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "App.Metrics.Extensions.Mvc": {
+              "target": "Package",
+              "version": "[1.2.1, )"
+            },
+            "App.Metrics.Extensions.Reporting.InfluxDB": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "App.Metrics.Formatters.Json": {
+              "target": "Package",
+              "version": "[3.1.0, )"
+            },
             "Dapper": {
               "target": "Package",
               "version": "[1.60.6, )"
