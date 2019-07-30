@@ -21,7 +21,7 @@ namespace Sysmap.Sanity.VivoApi.Controllers
 
 
         [HttpGet("ListCenarios")]
-        public IActionResult ListCenarios(string codRelease,string analista ,[FromServices]VivoDAO vivoDAO)
+        public ObjectResult ListCenarios(string codRelease,string analista ,[FromServices]VivoDAO vivoDAO)
         {
             _logger.LogInformation($"Código da release: {codRelease}");
             try
@@ -31,8 +31,7 @@ namespace Sysmap.Sanity.VivoApi.Controllers
                 {
                     return BadRequest("Còdigo da release não encontrado");
                 }
-                ObjectResult result = new ObjectResult(cenarios);
-                return Ok(result);
+                return new ObjectResult(cenarios);
             }
             catch(Exception ex)
             {
